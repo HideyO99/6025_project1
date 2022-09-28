@@ -1,27 +1,72 @@
 #include <cmath>
 #include <iostream>
 #include "include/basicFunction.h"
+#include <gtest/gtest.h>
+
+TEST(SumTests, Sum_Positive)
+{
+	EXPECT_EQ(55, Sum(1, 10));
+	EXPECT_EQ(4950, Sum(1, 99));
+	EXPECT_EQ(65703, Sum(1, 362)); //test integer overflow
+	EXPECT_EQ(3150, Sum(99, 126));
+	EXPECT_EQ(0, Sum(99, 1));
+}
+
+TEST(SumTests, Sum_Negative)
+{
+	EXPECT_EQ(0, Sum(-10, 10));
+	EXPECT_EQ(-34, Sum(-10, 6));
+	EXPECT_EQ(-5049, Sum(-100, 1));
+	EXPECT_EQ(0, Sum(10, -10));
+	EXPECT_EQ(-65702, Sum(-362, 1)); //test integer overflow
+}
+
+TEST(CtoFTests, Convert_test)
+{
+	EXPECT_FLOAT_EQ(32.f, CelsiusToFahrenheit(0.f));
+	EXPECT_FLOAT_EQ(212.f, CelsiusToFahrenheit(100.f));
+	EXPECT_FLOAT_EQ(-4.f, CelsiusToFahrenheit(-20.f));
+	EXPECT_FLOAT_EQ(1.4f, CelsiusToFahrenheit(-17.f));
+	EXPECT_FLOAT_EQ(97.7f, CelsiusToFahrenheit(36.5f));
+}
+
+TEST(FtoCTests, Convert_test)
+{
+	EXPECT_FLOAT_EQ(0.f, FahrenheitToCelsius(32.f));
+	EXPECT_NEAR(-17.7778f, FahrenheitToCelsius(0.f), 0.0001f);
+	EXPECT_NEAR(-28.8889f, FahrenheitToCelsius(-20.f),0.0001f);
+	EXPECT_NEAR(37.7778f, FahrenheitToCelsius(100.f), 0.0001f);
+	EXPECT_FLOAT_EQ(36.5f, FahrenheitToCelsius(97.7f));
+}
+
+TEST(HysteratisTests, Hysteratis)
+{
+	EXPECT_TRUE(Hysterasis(5.f, 1.5f, 5.5f, false));
+	EXPECT_TRUE(Hysterasis(5.f, 1.5f, 5.5f, true));
+	EXPECT_TRUE(Hysterasis(5.f, 6.5f, 5.5f, false)); // test low threshold is greather than high threshold 
+	EXPECT_TRUE(Hysterasis(5.f, 6.5f, 5.5f, true)); // test low threshold is greather than high threshold
+	EXPECT_FALSE(Hysterasis(5.f, 1.5f, 0.f, false));
+	EXPECT_FALSE(Hysterasis(5.f, 1.5f, 0.f, true));
+	EXPECT_FALSE(Hysterasis(5.f, 1.5f, 3.5f, false));
+	EXPECT_TRUE(Hysterasis(5.f, 1.5f, 3.5f, true));
+	EXPECT_TRUE(Hysterasis(5.f, -5.5f, -1.5f, true));
+
+}
+
+TEST(AreaOfTriangleTests,Triagle_Area_Cal)
+{
+	EXPECT_FLOAT_EQ(10.f, AreaOfTriangle(4.f, 5.f));
+	EXPECT_FLOAT_EQ(10.f, AreaOfTriangle(-4.f, 5.f));
+	EXPECT_FLOAT_EQ(10.f, AreaOfTriangle(4.f, -5.f));
+	EXPECT_FLOAT_EQ(0.f, AreaOfTriangle(0.f, 5.f));
+	EXPECT_FLOAT_EQ(0.f, AreaOfTriangle(4.f, 0.f));
+	EXPECT_FLOAT_EQ(7.5f, AreaOfTriangle(3.f, 5.f));
+}
 
 int main(int argc, char** argv)
 {
-	int result = 0;
-	result = Sum(1, 10);
-	std::cout << "sum:" << result << std::endl;
-	float Fresult = 0.0f;
-	Fresult = CelsiusToFahrenheit(0);
-	std::cout << "CtoF:" << Fresult << std::endl;
-	Fresult = FahrenheitToCelsius(52);
-	std::cout << "FtoC:" << Fresult << std::endl;
-	bool state = false;
-	state = Hysterasis(5, 3, 4, state);
-	std::cout << "false " <<state<< std::endl;
-	state = Hysterasis(5, 3, 6, state);
-	std::cout << "high pass "<<state << std::endl;
-	state = Hysterasis(5, 3, 4, state);
-	std::cout << "b pass " << state << std::endl;
-	state = Hysterasis(5, 3, 2, state);
-	std::cout << "low pass " << state << std::endl;
-	Fresult = AreaOfTriangle(10, 5);
-	std::cout << "area:" << Fresult << std::endl;
-	return 0;
+	::testing::InitGoogleTest(&argc, argv);
+	int result = RUN_ALL_TESTS();
+	
+	return result;
 }

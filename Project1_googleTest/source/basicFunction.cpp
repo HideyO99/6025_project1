@@ -104,5 +104,5 @@ bool Hysterasis(float HThreshold, float LThreshold, float Input, bool CurState)
 //////////////////////////////////////////////////////////
 float AreaOfTriangle(float Base, float Height)
 {
-	return Base*Height/2;
+	return abs(Base*Height/2);
 }
