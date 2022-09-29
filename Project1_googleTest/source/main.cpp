@@ -73,7 +73,7 @@ TEST(TimeOfFlightTests_BlackBox, TOF)
 	//todo
 }
 
-TEST(DegreeToRadianTests, Convert_test)
+TEST(DegreeToRadianTests_BlackBox, Convert_test)
 {
 	EXPECT_FLOAT_EQ(0.f, DegreeToRadian(0.f));
 	EXPECT_NEAR(6.2831f, DegreeToRadian(360.f), 0.0001f);
