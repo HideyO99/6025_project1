@@ -73,6 +73,25 @@ TEST(TimeOfFlightTests_BlackBox, TOF)
 	//todo
 }
 
+TEST(MaxHeightTests_Blackbox, MaxHeight_test)
+{
+	//EXPECT_EQ(0.f, MaxHeight(49.f, 90.f));
+	//todo
+}
+
+TEST(MaxDistanceTests_BlackBox, MaxDistance_test)
+{
+	//EXPECT_EQ(0.f, MaxDistance(49.f, 90.f));
+	//todo
+}
+
+TEST(VerticalPositionTests_BlackBox, VerticalPosition_test)
+{
+	//EXPECT_EQ(0.f, VerticalPos(49.f, 0.f, 90.f));
+	//todo
+}
+
+
 TEST(DegreeToRadianTests_BlackBox, Convert_test)
 {
 	EXPECT_FLOAT_EQ(0.f, DegreeToRadian(0.f));
