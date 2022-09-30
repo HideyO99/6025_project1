@@ -98,25 +98,35 @@ TEST(MaxHeightTests_Blackbox, MaxHeight_test)
 
 TEST(MaxDistanceTests_BlackBox, MaxDistance_test)
 {
+	
 	EXPECT_NEAR(0.f, MaxDistance(49.f, 90.f), 0.01f);
 	EXPECT_NEAR(245.f, MaxDistance(49.f, 45.f), 0.01f);
 	EXPECT_NEAR(0.f, MaxDistance(49.f, 360.f), 0.01f);
 	EXPECT_NEAR(0.f, MaxDistance(49.f, 0.f), 0.01f);
 	EXPECT_NEAR(0.f, MaxDistance(9.8f, 90.f), 0.01f);
-	EXPECT_NEAR(98.f, MaxDistance(9.8f, 45.f), 0.01f);
+	EXPECT_NEAR(9.8f, MaxDistance(9.8f, 45.f), 0.01f);
 	EXPECT_NEAR(0.f, MaxDistance(9.8f, 360.f), 0.01f);
 	EXPECT_NEAR(0.f, MaxDistance(9.8f, 0.f), 0.01f);
 	EXPECT_NEAR(0.f, MaxDistance(0.f, 90.f), 0.01f);
 	EXPECT_NEAR(0.f, MaxDistance(0.f, 45.f), 0.01f);
 	EXPECT_NEAR(0.f, MaxDistance(0.f, 360.f), 0.01f);
 	EXPECT_NEAR(0.f, MaxDistance(0.f, 0.f), 0.01f);
-	//todo
 }
 
 TEST(VerticalPositionTests_BlackBox, VerticalPosition_test)
 {
-	//EXPECT_EQ(0.f, VerticalPos(49.f, 0.f, 90.f));
-	//todo
+	EXPECT_NEAR(0.f, VerticalPos(49.f, 0.f, 90.f), 0.01f);
+	EXPECT_NEAR(0.f, VerticalPos(49.f, 0.f, 45.f), 0.01f);
+	EXPECT_NEAR(0.f, VerticalPos(49.f, 0.f, 360.f), 0.01f);
+	EXPECT_NEAR(0.f, VerticalPos(49.f, 0.f, 0.f), 0.01f);
+	EXPECT_NEAR(0.f, VerticalPos(49.f, 10.f, 90.f), 0.01f);
+	EXPECT_NEAR(9.5918f, VerticalPos(49.f, 10.f, 45.f), 0.01f);
+	EXPECT_NEAR(-0.204f, VerticalPos(49.f, 10.f, 360.f), 0.01f);
+	EXPECT_NEAR(-0.204f, VerticalPos(49.f, 10.f, 0.f), 0.01f);
+	EXPECT_NEAR(0.f, VerticalPos(0.f, 10.f, 90.f), 0.01f);
+	EXPECT_NEAR(0.f, VerticalPos(0.f, 10.f, 45.f), 0.01f);	//print error
+	EXPECT_NEAR(0.f, VerticalPos(0.f, 10.f, 360.f), 0.01f);	//print error
+	EXPECT_NEAR(0.f, VerticalPos(0.f, 10.f, 0.f), 0.01f);	//print error
 }
 
 
@@ -124,7 +134,10 @@ TEST(DegreeToRadianTests_BlackBox, Convert_test)
 {
 	EXPECT_FLOAT_EQ(0.f, DegreeToRadian(0.f));
 	EXPECT_NEAR(6.2831f, DegreeToRadian(360.f), 0.0001f);
-	//todo
+	EXPECT_NEAR(1.5708f, DegreeToRadian(90.f), 0.0001f);
+	EXPECT_NEAR(0.7853f, DegreeToRadian(45.f), 0.0001f);
+	EXPECT_NEAR(4.7123f, DegreeToRadian(270.f), 0.0001f);
+	EXPECT_NEAR(0.6435f, DegreeToRadian(36.87f), 0.0001f);
 }
 
 int main(int argc, char** argv)
