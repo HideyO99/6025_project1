@@ -108,13 +108,24 @@ float DegreeToRadian(float AngleDegree)
 //////////////////////////////////////////////////////////////////////////
 float VerticalPos(float Vinit, float HorizonPos, float AngleDegree)
 {
-	float AngleRadian = DegreeToRadian(AngleDegree);
-	float CosValue = cos(AngleRadian);
+	float AngleRadian = 0;
+	float CosValue = 0;
+	float TanValue =0;
 	float VPos = 0;
+	float Angle = fmod(AngleDegree,360.f);
 
-	if (Vinit != 0 || CosValue != 0)
+	if ((Angle!=90.f)&& (Angle!=270.f))
 	{
-		VPos = HorizonPos * tan(AngleRadian) - ((GForce * HorizonPos * HorizonPos) / (2 * Vinit * Vinit * CosValue * CosValue));
+		AngleRadian = DegreeToRadian(AngleDegree);
+		CosValue = cos(AngleRadian);
+		TanValue = tan(AngleRadian);
+	}
+	else {
+		return 0;
+	}
+	if (Vinit != 0)
+	{
+		VPos = HorizonPos * TanValue - ((GForce * HorizonPos * HorizonPos) / (2 * Vinit * Vinit * CosValue * CosValue));
 	}
 	else 
 	{
