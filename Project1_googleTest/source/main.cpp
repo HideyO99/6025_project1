@@ -70,18 +70,46 @@ TEST(TimeOfFlightTests_BlackBox, TOF)
 	EXPECT_NEAR(7.0710f, TimeOfFlight(49.f, 45.f), 0.0001f);
 	EXPECT_NEAR(0.f, TimeOfFlight(49.f, 360.f), 0.0001f);
 	EXPECT_FLOAT_EQ(0.f, TimeOfFlight(49.f, 0.f));
-	//todo
+	EXPECT_FLOAT_EQ(20.f, TimeOfFlight(98.f, 90.f));
+	EXPECT_NEAR(14.1421f, TimeOfFlight(98.f, 45.f), 0.0001f);
+	EXPECT_NEAR(0.f, TimeOfFlight(98.f, 360.f), 0.001f);
+	EXPECT_FLOAT_EQ(0.f, TimeOfFlight(98.f, 0.f));
+	EXPECT_FLOAT_EQ(0.f, TimeOfFlight(0.f, 90.f));
+	EXPECT_FLOAT_EQ(0.f, TimeOfFlight(0.f, 45.f));
+	EXPECT_FLOAT_EQ(0.f, TimeOfFlight(0.f, 360.f));
+	EXPECT_FLOAT_EQ(0.f, TimeOfFlight(0.f, 0.f));
 }
 
 TEST(MaxHeightTests_Blackbox, MaxHeight_test)
 {
-	//EXPECT_EQ(0.f, MaxHeight(49.f, 90.f));
-	//todo
+	EXPECT_NEAR(122.5f, MaxHeight(49.f, 90.f), 0.0001f);
+	EXPECT_NEAR(61.25f, MaxHeight(49.f, 45.f), 0.0001f);
+	EXPECT_NEAR(0.f, MaxHeight(49.f, 360.f), 0.0001f);
+	EXPECT_NEAR(0.f, MaxHeight(49.f, 0.f), 0.0001f);
+	EXPECT_NEAR(4.9f, MaxHeight(9.8f, 90.f), 0.0001f);
+	EXPECT_NEAR(2.45f, MaxHeight(9.8f, 45.f), 0.0001f);
+	EXPECT_NEAR(0.f, MaxHeight(9.8f, 360.f), 0.0001f);
+	EXPECT_NEAR(0.f, MaxHeight(9.8f, 0.f), 0.0001f);
+	EXPECT_NEAR(0.f, MaxHeight(0.f, 90.f), 0.0001f);
+	EXPECT_NEAR(0.f, MaxHeight(0.f, 45.f), 0.0001f);
+	EXPECT_NEAR(0.f, MaxHeight(0.f, 360.f), 0.0001f);
+	EXPECT_NEAR(0.f, MaxHeight(0.f, 0.f), 0.0001f);
 }
 
 TEST(MaxDistanceTests_BlackBox, MaxDistance_test)
 {
-	//EXPECT_EQ(0.f, MaxDistance(49.f, 90.f));
+	EXPECT_NEAR(0.f, MaxDistance(49.f, 90.f), 0.01f);
+	EXPECT_NEAR(245.f, MaxDistance(49.f, 45.f), 0.01f);
+	EXPECT_NEAR(0.f, MaxDistance(49.f, 360.f), 0.01f);
+	EXPECT_NEAR(0.f, MaxDistance(49.f, 0.f), 0.01f);
+	EXPECT_NEAR(0.f, MaxDistance(9.8f, 90.f), 0.01f);
+	EXPECT_NEAR(98.f, MaxDistance(9.8f, 45.f), 0.01f);
+	EXPECT_NEAR(0.f, MaxDistance(9.8f, 360.f), 0.01f);
+	EXPECT_NEAR(0.f, MaxDistance(9.8f, 0.f), 0.01f);
+	EXPECT_NEAR(0.f, MaxDistance(0.f, 90.f), 0.01f);
+	EXPECT_NEAR(0.f, MaxDistance(0.f, 45.f), 0.01f);
+	EXPECT_NEAR(0.f, MaxDistance(0.f, 360.f), 0.01f);
+	EXPECT_NEAR(0.f, MaxDistance(0.f, 0.f), 0.01f);
 	//todo
 }
 
